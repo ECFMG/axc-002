@@ -1,0 +1,37 @@
+{
+	"name": "@axc-verification/acceptance-api",
+	"version": "1.0.0",
+	"description": "Serenity/Cucumber acceptance tests for the agentCourses API",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"lint": "biome lint",
+		"format": "biome format --write",
+		"format:check": "biome format .",
+		"typecheck": "tsgo --noEmit --pretty false",
+		"test": "pnpm run test:acceptance",
+		"test:acceptance": "NODE_OPTIONS='--import tsx/esm' cucumber-js && serenity-bdd run --source ./target/site/serenity --destination ./reports/serenity",
+		"clean": "rimraf reports target"
+	},
+	"dependencies": {
+		"@axc/application-services": "workspace:*",
+		"@axc/domain": "workspace:*",
+		"@axc/rest": "workspace:*",
+		"@cellix/serenity-framework": "workspace:*",
+		"hono": "catalog:",
+		"@cucumber/cucumber": "catalog:",
+		"@serenity-js/assertions": "catalog:",
+		"@serenity-js/console-reporter": "catalog:",
+		"@serenity-js/core": "catalog:",
+		"@serenity-js/cucumber": "catalog:",
+		"@serenity-js/serenity-bdd": "catalog:",
+		"std-env": "^4.0.0"
+	},
+	"devDependencies": {
+		"@cellix/config-typescript": "workspace:*",
+		"@types/node": "catalog:",
+		"rimraf": "catalog:",
+		"tsx": "catalog:",
+		"typescript": "catalog:"
+	}
+}

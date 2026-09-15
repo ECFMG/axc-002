@@ -1,0 +1,33 @@
+node_modules
+.pnpm-store
+.DS_Store
+**/coverage
+**/dist
+.claude/
+lcov-report
+__*
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Turborepo
+.turbo
+
+# Local Azure Functions
+apps/api/deploy/
+**/*.zip
+
+# Generated reports
+**/reports/
+**/target/
+build-artifacts/
+**/.docusaurus
+apps/docs/build/
+
+# Agent runtime
+.agents-work/
+
+# Env
+.env
+.env.local
+*.pem

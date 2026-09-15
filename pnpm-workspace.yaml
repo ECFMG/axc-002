@@ -1,0 +1,51 @@
+packages:
+  - "apps/*"
+  - "packages/cellix/*"
+  - "packages/axc/*"
+  - "packages/axc-verification/*"
+
+engineStrict: true
+
+# Disable pnpm 11 auto-install on script runs so parallel turbo workers
+# do not race the lockfile.
+verifyDepsBeforeRun: false
+
+# pnpm 11: dependency lifecycle scripts are denied unless allowBuilds is true.
+# Use mongodb-memory-server-core (no postinstall binary download).
+allowBuilds:
+  '@apollo/protobufjs': false
+  core-js: false
+  esbuild: false
+
+catalog:
+  '@apollo/server': 5.5.0
+  '@azure/functions': 4.11.0
+  '@cucumber/cucumber': 12.8.1
+  '@cucumber/messages': 32.3.1
+
+  '@serenity-js/assertions': 3.43.0
+  '@serenity-js/console-reporter': 3.43.0
+  '@serenity-js/core': 3.43.0
+  '@serenity-js/cucumber': 3.43.0
+  '@serenity-js/serenity-bdd': 3.43.0
+  '@types/node': ^24.5.2
+  '@vitest/coverage-istanbul': 4.1.11
+  archunit: ^2.1.63
+  graphql: ^16.10.0
+  hono: ^4.9.8
+  mongodb: 6.18.0
+  mongodb-memory-server-core: ^10.1.4
+  mongoose: 8.24.1
+  playwright: 1.59.0
+  react: ^19.2.7
+  rimraf: 6.0.1
+  tsx: ^4.21.0
+  typescript: 6.0.3
+  "@typescript/native-preview": 7.0.0-dev.20260428.1
+  vitest: 4.1.11
+
+overrides:
+  axios: ^1.18.0
+  serialize-javascript: 7.0.5
+  'serialize-javascript@6.0.2': 7.0.5
+  'serialize-javascript@7.0.4': 7.0.5

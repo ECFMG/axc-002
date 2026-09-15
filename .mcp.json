@@ -1,0 +1,8 @@
+{
+	"mcpServers": {
+		"e18e": {
+			"command": "pnpm",
+			"args": ["dlx", "@e18e/mcp"]
+		}
+	}
+}

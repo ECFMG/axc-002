@@ -1,0 +1,78 @@
+{
+	"$schema": "https://unpkg.com/knip@5/schema.json",
+	"workspaces": {
+		".": {
+			"entry": ["scripts/*.mjs"],
+			"project": ["scripts/**/*.mjs"],
+			"ignoreBinaries": ["func"]
+		},
+		"apps/api": {
+			"entry": ["src/index.ts", "src/app.ts", "start-dev.ts", "rolldown.config.ts"],
+			"project": ["src/**/*.ts", "*.ts"]
+		},
+		"apps/docs": {
+			"entry": ["src/**/*.{ts,tsx,js,jsx}", "start-dev.ts", "docusaurus.config.ts", "sidebars.ts"],
+			"project": ["src/**/*.{ts,tsx,js,jsx}", "*.ts"]
+		},
+		"packages/cellix/*": {
+			"entry": ["src/index.ts", "src/**/index.ts"],
+			"project": ["src/**/*.ts"]
+		},
+		"packages/cellix/config-typescript": {
+			"entry": ["tsconfig.base.json", "tsconfig.node.json", "tsconfig.vitest.json"],
+			"project": []
+		},
+		"packages/cellix/config-rolldown": {
+			"entry": ["src/index.ts", "bin/prepare-azure-functions-deploy.mjs"],
+			"project": ["src/**/*.ts"]
+		},
+		"packages/cellix/config-vitest": {
+			"entry": ["src/index.ts"],
+			"project": ["src/**/*.ts"]
+		},
+		"packages/cellix/domain-seedwork": {
+			"entry": ["src/domain-seedwork/*.ts", "src/passport-seedwork/*.ts"],
+			"project": ["src/**/*.ts"]
+		},
+		"packages/cellix/serenity-framework": {
+			"entry": ["src/index.ts", "src/**/index.ts", "src/formatters/agent-formatter.ts"],
+			"project": ["src/**/*.ts"],
+			"ignoreDependencies": ["@testing-library/react", "playwright", "react"]
+		},
+		"packages/cellix/mongoose-seedwork": {
+			"entry": ["src/index.ts"],
+			"project": ["src/**/*.ts"]
+		},
+		"packages/axc/*": {
+			"entry": ["src/index.ts"],
+			"project": ["src/**/*.ts"]
+		},
+		"packages/axc-verification/archunit-tests": {
+			"entry": ["src/index.ts", "src/**/*.test.ts"],
+			"project": ["src/**/*.ts"]
+		},
+		"packages/axc-verification/acceptance-api": {
+			"entry": ["cucumber.js", "src/world.ts", "src/step-definitions/*.ts", "src/**/*.ts"],
+			"project": ["src/**/*.ts"],
+			"ignoreBinaries": ["report"],
+			"ignoreUnresolved": ["progress-bar"]
+		}
+	},
+	"ignoreWorkspaces": ["packages/cellix/config-typescript"],
+	"ignore": ["**/fixtures/**", "**/*.test.ts", "**/*.spec.ts", "**/dist/**", "**/coverage/**", "**/__tests__/**", "**/tests/**", ".agents/**", ".github/**", "portless.config.cjs"],
+	"ignoreDependencies": [
+		"@types/*",
+		"@serenity-js/assertions",
+		"@serenity-js/console-reporter",
+		"@serenity-js/core",
+		"@serenity-js/cucumber",
+		"@serenity-js/serenity-bdd",
+		"@cellix/serenity-framework",
+		"@e18e/cli",
+		"ts-scope-trimmer-plugin"
+	],
+	"ignoreIssues": {
+		"packages/cellix/**": ["exports", "types", "nsExports", "nsTypes", "files", "duplicates"]
+	},
+	"ignoreBinaries": ["func"]
+}

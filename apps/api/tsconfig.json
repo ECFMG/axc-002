@@ -1,0 +1,18 @@
+{
+	"extends": "@cellix/config-typescript/node",
+	"compilerOptions": {
+		"exactOptionalPropertyTypes": false,
+		"outDir": "dist",
+		"types": ["node"],
+		"rootDir": "src",
+		"tsBuildInfoFile": "dist/tsconfig.tsbuildinfo"
+	},
+	"include": ["src"],
+	"references": [
+		{ "path": "../../packages/axc/application-services" },
+		{ "path": "../../packages/axc/domain" },
+		{ "path": "../../packages/axc/persistence" },
+		{ "path": "../../packages/axc/rest" },
+		{ "path": "../../packages/axc/service-mongoose" }
+	]
+}

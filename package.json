@@ -1,0 +1,58 @@
+{
+	"name": "agentcourses",
+	"version": "1.0.0",
+	"description": "agentCourses (axc) — a dark software factory for measuring harness engineering, agentic coding harnesses, and model selection against software quality and delivery efficiency.",
+	"type": "module",
+	"author": "agentCourses",
+	"license": "MIT",
+	"packageManager": "pnpm@11.12.0",
+	"scripts": {
+		"dev": "pnpm proxy:ensure && turbo watch dev --filter=@apps/api",
+		"dev:worktree": "WORKTREE_NAME=$(basename \"$PWD\") pnpm proxy:ensure && WORKTREE_NAME=$(basename \"$PWD\") turbo watch dev:worktree --filter=@apps/api",
+		"dev:docs": "pnpm proxy:ensure && turbo watch dev --filter=@apps/docs",
+		"start": "turbo run start --filter=@apps/api",
+		"build": "turbo run build --filter=@apps/api",
+		"test": "turbo run test test:acceptance",
+		"verify": "turbo run check-scripts format:check lint typecheck build && turbo run knip e18e test:arch test test:acceptance audit snyk",
+		"lint": "turbo run lint",
+		"format": "turbo run format",
+		"format:check": "turbo run format:check",
+		"format:staged": "biome check --write --staged --no-errors-on-unmatched",
+		"typecheck": "turbo run typecheck",
+		"test:arch": "turbo run test:arch",
+		"test:acceptance": "turbo run test:acceptance",
+		"clean": "turbo run clean && rimraf dist node_modules **/coverage",
+		"proxy:stop": "pnpm exec portless proxy stop || true",
+		"proxy:start": "pnpm exec portless proxy start --https -p 1355",
+		"proxy:ensure": "pnpm exec portless proxy start --https -p 1355 || true",
+		"knip": "knip",
+		"e18e": "node scripts/e18e-verify.mjs",
+		"audit": "(pnpm audit --audit-level=high --prod) && (pnpm audit --audit-level=critical --dev)",
+		"snyk": "node scripts/snyk-verify.mjs",
+		"check-scripts": "node scripts/check-dependency-scripts.mjs",
+		"verify:gates": "pnpm run check-scripts && pnpm run format:check && pnpm run lint && pnpm run typecheck && pnpm run knip && pnpm run e18e && pnpm run test:arch && pnpm run test && pnpm run audit && pnpm run snyk",
+		"prepare": "husky"
+	},
+	"lint-staged": {
+		"*": "biome check --write --no-errors-on-unmatched --files-ignore-unknown=true"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "2.4.10",
+		"@e18e/cli": "^0.7.0",
+		"@types/node": "catalog:",
+		"@typescript/native-preview": "catalog:",
+		"@vitest/coverage-istanbul": "catalog:",
+		"husky": "^9.1.7",
+		"knip": "^5.64.2",
+		"lint-staged": "^16.1.6",
+		"portless": "0.11.1",
+		"rimraf": "^6.0.1",
+		"ts-scope-trimmer-plugin": "^1.0.2",
+		"turbo": "2.9.18",
+		"typescript": "catalog:",
+		"vitest": "catalog:"
+	},
+	"engines": {
+		"node": ">=24"
+	}
+}

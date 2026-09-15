@@ -1,0 +1,16 @@
+{
+	"extends": ["//"],
+	"tags": ["docs"],
+	"tasks": {
+		"dev": {
+			"dependsOn": ["^build"],
+			"interruptible": true,
+			"inputs": []
+		},
+		"dev:worktree": {
+			"dependsOn": ["^build"],
+			"interruptible": true,
+			"inputs": []
+		}
+	}
+}
